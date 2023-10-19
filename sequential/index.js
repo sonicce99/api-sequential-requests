@@ -14,14 +14,15 @@ const render = () => {
 render();
 
 const apiQueue = [];
+let jwt = `이것은 잘못된 JWT`;
+
 const apiRequest = (request) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // 2번인 사용가능한 적림금 가져오기 api 요청일 경우 reject.
-      if (request === `2. 사용가능한 적립금 가져오기`) {
+      if (jwt === "이것은 잘못된 JWT") {
         reject(new Error(`${request} 에러!`));
       } else {
-        resolve(true);
+        resolve(`${request} 성공!`);
       }
     }, 500);
   });
@@ -39,8 +40,12 @@ const sequentialRequests = async () => {
       sequentialRequests();
     }
   } catch (error) {
-    alert(error);
-    apiQueue.length = 0;
+    alert(error + ` JWT를 다시 받아오겠습니다.`);
+    jwt = `이것은 정상적인 JWT`;
+
+    if (apiQueue.length > 0) {
+      sequentialRequests();
+    }
   }
 };
 
