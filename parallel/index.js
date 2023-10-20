@@ -11,7 +11,7 @@ const apiRequest = (request) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(new Error(`${request} 에러!`));
-    }, 1000);
+    }, 300);
   });
 };
 
