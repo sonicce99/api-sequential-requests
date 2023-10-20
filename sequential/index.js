@@ -38,6 +38,8 @@ const sequentialRequests = async () => {
 
     if (apiQueue.length > 0) {
       sequentialRequests();
+    } else {
+      jwt = `이것은 잘못된 JWT`;
     }
   } catch (error) {
     alert(error + ` JWT를 다시 받아오겠습니다.`);
